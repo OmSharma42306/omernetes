@@ -3,6 +3,7 @@
   "files": [],
   "references": [
     { "path": "packages/common" },
-    { "path": "apps/api-server" }
+    { "path": "apps/api-server" },
+    {"path": "packages/db"}
   ]
 }
