@@ -1,3 +1,10 @@
+# Architecture 
+
+
+![image info](./architecture.png)
+
+
+
 # Turborepo starter
 
 This Turborepo starter is maintained by the Turborepo core team.
