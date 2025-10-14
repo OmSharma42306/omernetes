@@ -1,0 +1,20 @@
+{
+  "name": "processor",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -b && node dist/index.js"
+  },
+  "devDependencies": {
+    "@repo/queue": "*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^5.61.0",
+    "ioredis": "^5.8.1"
+  }
+}
