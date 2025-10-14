@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/common": ["packages/common/src"]  // <-- TS uses this for type resolution
+      "@repo/common": ["packages/common/src"],// <-- TS uses this for type resolution
+      "@repo/db" : ["packages/db/src"],
     },
     "module": "nodenext",
     "moduleResolution": "nodenext",

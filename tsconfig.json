@@ -4,6 +4,7 @@
   "references": [
     { "path": "packages/common" },
     { "path": "apps/api-server" },
-    {"path": "packages/db"}
+    { "path": "packages/db" },
+    { "path": "packages/queue" }
   ]
 }
