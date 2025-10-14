@@ -19,7 +19,7 @@ app.post('/config',upload.single('file'),async(req:Request,res:Response)=>{
     try{
         const file = req.file;
         const data : any = req.file?.buffer.toString();
-        const userID = "3388bd69-4151-4445-98bb-3fd8d7090a83";
+        const userID = "1fbf31ca-4fa9-45d5-a71a-0efa3542d116";
         
         console.log("Data: ",data);
 
@@ -45,21 +45,29 @@ app.post('/config',upload.single('file'),async(req:Request,res:Response)=>{
             });        
         }
         
-        const configs = await prismaClient.config.findMany({
+        // const configs = await prismaClient.config.findMany({
+        //     where : {
+        //         version : versionName
+        //     },
+        //     select:{
+        //         id : true
+        //     }
+        // });
+
+        const configs = await prismaClient.config.findFirst({
             where : {
-                version : versionName
-            },
-            select:{
-                id : true
+                version : versionName,
+                userId : userID
             }
         });
 
-        const configId : any  = configs[0]?.id ;
+        const configId : any  = configs?.id ;
 
         console.log("Version Name : ",versionName);
-        for(const [name,svc] of Object.entries(parsedResult.data.services)){
-           
-            const initService = await prismaClient.services.upsert({
+        await prismaClient.$transaction(async (tx)=>{
+            for(const [name,svc] of Object.entries(parsedResult.data.services)){
+
+               const initService = await tx.services.upsert({
                 where :{
                     name_configId : {
                         name : name,
@@ -89,7 +97,15 @@ app.post('/config',upload.single('file'),async(req:Request,res:Response)=>{
                     configId : configId,
                     userId : userID
                 }
-            })
+            });
+
+            const outboxService = await tx.outbox_Service.create({
+                data : {
+                    serviceId : initService.id,
+
+                }
+            });
+
             console.log("********************************************************")
             console.log(name);
             console.log(svc.image);
@@ -99,7 +115,9 @@ app.post('/config',upload.single('file'),async(req:Request,res:Response)=>{
             console.log("********************************************************")
         }
 
-        res.status(200).json({msg : "Your Config Validated Successfully!.","yamlData": data});
+        })
+        
+        res.status(200).json({msg : "Your Config Validated Successfully!.",version : versionName, services: Object.keys(parsedResult.data.services)});
         return;
     }catch(error){
         res.status(400).json({msg : error});
