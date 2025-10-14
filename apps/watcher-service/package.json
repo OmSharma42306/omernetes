@@ -1,0 +1,17 @@
+{
+  "name": "watcher-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc -b && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@repo/db": "*",
+    "@repo/queue": "*"
+  }
+}
