@@ -50,7 +50,16 @@ model Services{
   config Config @relation(fields: [configId],references: [id])
   userId String
   user User @relation(fields: [userId],references: [id])
+  outbox_service Outbox_Service[]
 
   @@unique([name,configId])
   }
 
+model Outbox_Service{
+  id String @id @default(uuid())
+  serviceId String
+  service Services @relation(fields: [serviceId],references: [id])
+  status String @default("PENDING") 
+  createdAt DateTime @default(now())
+  processedAt DateTime?
+}
