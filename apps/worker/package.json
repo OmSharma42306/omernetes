@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev" : "tsc -b && node dist/index.js"
+  },
+  "devDependencies": {
+    "@repo/kafka-service" : "*",
+    "@repo/db" : "*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
