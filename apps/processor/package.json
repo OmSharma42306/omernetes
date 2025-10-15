@@ -8,13 +8,16 @@
     "dev": "tsc -b && node dist/index.js"
   },
   "devDependencies": {
-    "@repo/queue": "*"
+    "@repo/queue": "*",
+    "@repo/db" : "*"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/dockerode": "^3.3.44",
     "bullmq": "^5.61.0",
+    "dockerode": "^4.0.9",
     "ioredis": "^5.8.1"
   }
 }
