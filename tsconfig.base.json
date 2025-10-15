@@ -4,6 +4,7 @@
     "paths": {
       "@repo/common": ["packages/common/src"],// <-- TS uses this for type resolution
       "@repo/db" : ["packages/db/src"],
+      "@repo/kafka-service" : ["packages/kafka-service/src"],
     },
     "module": "nodenext",
     "moduleResolution": "nodenext",
