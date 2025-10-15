@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "@repo/queue": "*",
-    "@repo/db" : "*"
+    "@repo/db" : "*",
+    "@repo/kafka-service":"*"
   },
   "keywords": [],
   "author": "",
